@@ -15,20 +15,14 @@ experiment:
         topic: walterExperimentActions
 kafka:
     audit:
-        bootstrap:
-            servers: localhost:9092
+        bootstrapServers: localhost:9092
         producer:
             acks: all
-            batch:
-                size: 16384
-            buffer:
-                memory: 33554432
-            key:
-                serializer: org.apache.kafka.common.serialization.StringSerializer
-            linger:
-                ms: 50
-            value:
-                serializer: org.apache.kafka.common.serialization.StringSerializer
+            batchSize: 16384
+            bufferMemory: 33554432
+            keySerializer: org.apache.kafka.common.serialization.StringSerializer
+            lingerMs: 50
+            valueSerializer: org.apache.kafka.common.serialization.StringSerializer
     cluster:
         autoOffsetReset: latest
         blockOnBufferFull: false
@@ -56,21 +50,14 @@ kafka:
         requestTimeoutMs: 250000
         sessionTimeoutMs: 240000
     experiment:
-        action:
-            bootstrap:
-                servers: localhost:9092
+        actionBootstrapServers: localhost:9092
             producer:
                 acks: all
-                batch:
-                    size: 16384
-                buffer:
-                    memory: 33554432
-                key:
-                    serializer: org.apache.kafka.common.serialization.StringSerializer
-                linger:
-                    ms: 50
-                value:
-                    serializer: org.apache.kafka.common.serialization.StringSerializer
+                batchSize: 16384
+                bufferMemory: 33554432
+                keySerializer: org.apache.kafka.common.serialization.StringSerializer
+                lingerMs: 50
+                valueSerializer: org.apache.kafka.common.serialization.StringSerializer
     retry:
         mech:
             executor:
