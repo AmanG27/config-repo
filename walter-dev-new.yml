@@ -30,37 +30,21 @@ kafka:
             value:
                 serializer: org.apache.kafka.common.serialization.StringSerializer
     cluster:
-        auto:
-            offset:
-                reset: latest
+        autoOffsetReset: latest
         blockOnBufferFull: false
         bootstrapServers: localhost:9092
         consumer:
-            commit:
-                option: 1
-            poll:
-                time: 100
-            pool:
-                size: 1
+            commitOption: 1
+            pollTime: 100
+            poolSize: 1
         fetch:
-            max:
-                wait:
-                    ms: 500
-            min:
-                bytes: 1
-        heartbeat:
-            interval:
-                ms: 3000
+            maxWaitMs: 500
+            minBytes: 1
+        heartbeatIntervalMs: 3000
         max:
-            partition:
-                fetch:
-                    bytes: 43200
-            poll:
-                records: 500
-        metadata:
-            max:
-                age:
-                    ms: 60000
+            partitionFetchBytes: 43200
+            pollRecords: 500
+        metadataMaxAgeMs: 60000
         producer:
             CompressionType: gzip
             acks: 0
@@ -69,12 +53,8 @@ kafka:
             keySerializer: org.apache.kafka.common.serialization.StringSerializer
             lingerMs: 50
             valueSerializer: org.apache.kafka.common.serialization.StringSerializer
-        request:
-            timeout:
-                ms: 250000
-        session:
-            timeout:
-                ms: 240000
+        requestTimeoutMs: 250000
+        sessionTimeoutMs: 240000
     experiment:
         action:
             bootstrap:
