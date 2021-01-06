@@ -3,16 +3,8 @@ aryabhata:
 audit:
     trail:
         logs:
-            default:
-                limit: 10
-        topic: ee_audit_trails
+            defaultLimit: 10
 cacheType: concurrentmap
-cluster:
-    handler:
-        topic: walterClusterTopic
-experiment:
-    action:
-        topic: walterExperimentActions
 kafka:
     audit:
         bootstrapServers: localhost:9092
@@ -23,6 +15,7 @@ kafka:
             keySerializer: org.apache.kafka.common.serialization.StringSerializer
             lingerMs: 50
             valueSerializer: org.apache.kafka.common.serialization.StringSerializer
+        trailTopic: ee_audit_trails
     cluster:
         autoOffsetReset: latest
         blockOnBufferFull: false
@@ -34,6 +27,7 @@ kafka:
         fetch:
             maxWaitMs: 500
             minBytes: 1
+        handlerTopic: walterClusterTopic
         heartbeatIntervalMs: 3000
         max:
             partitionFetchBytes: 43200
@@ -47,10 +41,12 @@ kafka:
             keySerializer: org.apache.kafka.common.serialization.StringSerializer
             lingerMs: 50
             valueSerializer: org.apache.kafka.common.serialization.StringSerializer
-        requestTimeoutMs: 250000
+        request:
+            timeoutMs: 250000
         sessionTimeoutMs: 240000
     experiment:
-        actionBootstrapServers: localhost:9092
+        action:
+            bootstrapServers: localhost:9092
             producer:
                 acks: all
                 batchSize: 16384
@@ -58,28 +54,22 @@ kafka:
                 keySerializer: org.apache.kafka.common.serialization.StringSerializer
                 lingerMs: 50
                 valueSerializer: org.apache.kafka.common.serialization.StringSerializer
+            topic: walterExperimentActions
     retry:
         mech:
-            executor:
-                shutdown:
-                    await:
-                        time:
-                            seconds: 10
-            threadpool:
-                count: 10
+            executorShutdownAwaitTimeSeconds: 10
+            threadpoolCount: 10
+    trafficSplit:
+        rmeUpdateKafkaTopic: rmeSplitUpdateTopic
+        updateKafkaTopic: mabSplitUpdateTopic
     trafficsplit:
-        bootstrap:
-            servers: localhost:9092
+        bootstrapServers: localhost:9092
         consumer:
-            commit:
-                option: 1
-            pool:
-                size: 1
-        group:
-            id: walterConsumerMab
+            commitOption: 1
+            poolSize: 1
+        groupId: walterConsumerMab
 megaups:
-    attribute:
-        url: http://localhost:8084/megaups/manageattributes/
+    attributeUrl: http://localhost:8084/megaups/manageattributes/
 mongodb:
     db: walter
     host: localhost
@@ -88,30 +78,18 @@ mongodb:
         db: userlist
         host: localhost
         port: 27017
-profile: walter_development
+profile: walter_dev
 send:
     metrics:
-        tags:
-            enabled: false
+        tagsEnabled: false
 statsd:
     port: 8125
     prefix: com.walter.metrics
     url: 10.14.24.174
-trafficSplit:
-    rme:
-        update:
-            kafka:
-                topic: rmeSplitUpdateTopic
-    update:
-        kafka:
-            topic: mabSplitUpdateTopic
 user:
     list:
         executor:
-            shutdown:
-                await:
-                    time:
-                        seconds: 10
+            shutdownAwaitTimeSeconds: 10
 vayu:
     url: http://localhost:8081/vayu/
 vision:
