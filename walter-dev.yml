@@ -1,10 +1,9 @@
-aryabhata:
-    url: http://localhost:8082/aryabhata/
 audit:
     trail:
         logs:
             defaultLimit: 10
-cacheType: concurrentmap
+cache:
+    cacheType: concurrentmap
 kafka:
     audit:
         bootstrapServers: localhost:9092
@@ -41,8 +40,7 @@ kafka:
             keySerializer: org.apache.kafka.common.serialization.StringSerializer
             lingerMs: 50
             valueSerializer: org.apache.kafka.common.serialization.StringSerializer
-        request:
-            timeoutMs: 250000
+        requestTimeoutMs: 250000
         sessionTimeoutMs: 240000
     experiment:
         action:
@@ -59,10 +57,9 @@ kafka:
         mech:
             executorShutdownAwaitTimeSeconds: 10
             threadpoolCount: 10
-    trafficSplit:
+    traffic-split:
         rmeUpdateKafkaTopic: rmeSplitUpdateTopic
         updateKafkaTopic: mabSplitUpdateTopic
-    trafficsplit:
         bootstrapServers: localhost:9092
         consumer:
             commitOption: 1
@@ -90,7 +87,7 @@ user:
     list:
         executor:
             shutdownAwaitTimeSeconds: 10
-vayu:
-    url: http://localhost:8081/vayu/
-vision:
-    url: http://localhost:8083/vision/
+url:
+    vayuURL: http://localhost:8081/vayu/
+    visionURL: http://localhost:8083/vision/
+    aryabhataURL: http://localhost:8082/aryabhata/
