@@ -69,7 +69,7 @@ megaups:
     attributeUrl: http://localhost:8084/megaups/manageattributes/
 mongodb:
     db: walter
-    testDB: test_db_refresh_remote-10
+    testDB: test_db_refresh_remote-11
     host: localhost
     port: 27017
     userlist:
